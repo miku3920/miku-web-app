@@ -1,0 +1,30 @@
+{
+  "name": "miku-web-app",
+  "version": "6.1.0",
+  "type": "commonjs",
+  "description": "A npm module for Telegram Web App",
+  "repository": "git+https://github.com/miku3920/miku-web-app.git",
+  "author": "miku3920 <papa964204@gmail.com>",
+  "keywords": [
+    "telegram",
+    "miku",
+    "webapp"
+  ],
+  "main": "./dist/telegram.js",
+  "scripts": {
+    "lint": "eslint . --ext .js,.mjs,cjs --fix --ignore-path .gitignore",
+    "build": "webpack",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "license": "MIT"
+}
