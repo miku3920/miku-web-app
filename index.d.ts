@@ -116,7 +116,7 @@ declare namespace telegram {
     setBackgroundColor: (color: string) => void,
     onEvent: (eventType: string, callback: object) => void,
     offEvent: (eventType: string, callback: object) => void,
-    sendData: (data: object) => void,
+    sendData: (data: string) => void,
     openLink: (url: string) => void,
     openTelegramLink: (url: string) => void,
     openInvoice: (url: string, callback: object) => void,

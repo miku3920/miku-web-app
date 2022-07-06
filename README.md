@@ -1,4 +1,4 @@
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/miku3920/miku-web-app/Github%20Actions) ![npm](https://img.shields.io/npm/v/miku-web-app) ![npm bundle size](https://img.shields.io/bundlephobia/min/miku-web-app) ![GitHub](https://img.shields.io/github/license/miku3920/miku-web-app)
+[![build](https://img.shields.io/github/workflow/status/miku3920/miku-web-app/Github%20Actions)](https://github.com/miku3920/miku-web-app/actions) [![npm](https://img.shields.io/npm/v/miku-web-app)](https://www.npmjs.com/package/miku-web-app) [![minified size](https://img.shields.io/bundlephobia/min/miku-web-app)](https://github.com/miku3920/miku-web-app/blob/main/dist/telegram.min.js) [![license](https://img.shields.io/github/license/miku3920/miku-web-app)](https://github.com/miku3920/miku-web-app/blob/main/LICENSE)
 
 # miku-web-app
 A npm module for Telegram Web App to prevent the pollution of the global scope.

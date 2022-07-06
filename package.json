@@ -1,6 +1,6 @@
 {
   "name": "miku-web-app",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "type": "commonjs",
   "description": "A npm module for Telegram Web App",
   "repository": "git+https://github.com/miku3920/miku-web-app.git",
