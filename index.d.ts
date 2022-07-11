@@ -76,7 +76,7 @@ declare namespace telegram {
     isIframe: boolean,
     onEvent: (eventType: string, callback: object) => void,
     offEvent: (eventType: string, callback: object) => void,
-    postEvent: (eventType: string, callback: object | false, eventData?: object) => void,
+    postEvent: (eventType: string, callback?: object | false, eventData?: object) => void,
     receiveEvent: (eventType: string, eventData: object) => void,
     callEventCallbacks: (eventType: string, func: object) => void,
   }

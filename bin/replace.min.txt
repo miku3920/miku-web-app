@@ -1,0 +1,1 @@
+!function(e,t){if("function"==typeof define&&define.amd)define([],t);else if("object"==typeof exports){var i=t();exports.WebView=i.WebView,exports.Utils=i.Utils,exports.Game=i.Game,exports.WebApp=i.WebApp}else e.Telegram=t()}(self,(()=>{

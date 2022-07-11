@@ -16,7 +16,14 @@ jobs:
           node-version: '16.x'
       - run: npm install
       - run: npm run build
-      - run: npm run test
+      - run: npm run test-cjs
+      - run: npm run test-cjs-default
+      - run: npm run test-cjs-min
+      - run: npm run test-cjs-min-default
+      - run: npm run test-esm
+      - run: npm run test-esm-default
+      - run: npm run test-esm-min
+      - run: npm run test-esm-min-default
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}

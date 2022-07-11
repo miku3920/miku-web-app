@@ -1,7 +1,10 @@
-import * as Telegram from '@/telegram'
+import Telegram from '@/factory.mjs'
 
-test('Version should be 6.0', () => {
-  expect(Telegram.WebApp.version).toBe('6.0')
+const check = ((process.env.TYPE || '').indexOf('Default') === -1) ? 'toBeDefined' : 'toBeUndefined'
+
+test('Import all exported members should have default', () => {
+  // Import default export should not have default
+  expect(Telegram.default)[check]()
 })
 
 test('Telegram should be defined', () => {

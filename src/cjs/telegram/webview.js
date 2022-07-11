@@ -39,7 +39,10 @@ try {
     iFrameStyle = document.createElement('style');
     document.head.appendChild(iFrameStyle);
     try {
-      window.parent.postMessage(JSON.stringify({eventType: 'iframe_ready'}), '*');
+      var trustedTarget = 'https://web.telegram.org';
+      // For now we don't restrict target, for testing purposes
+      // trustedTarget = '*';
+      window.parent.postMessage(JSON.stringify({eventType: 'iframe_ready'}), trustedTarget);
     } catch (e) {}
   }
 } catch (e) {}
@@ -136,7 +139,7 @@ function postEvent(eventType, callback, eventData) {
     try {
       var trustedTarget = 'https://web.telegram.org';
       // For now we don't restrict target, for testing purposes
-      trustedTarget = '*';
+      // trustedTarget = '*';
       window.parent.postMessage(JSON.stringify({eventType: eventType, eventData: eventData}), trustedTarget);
       if (initParams.tgWebAppDebug) {
         console.log('[Telegram.WebView] postEvent via postMessage', eventType, eventData);
@@ -240,7 +243,7 @@ function sessionStorageGet(key) {
   return null;
 }
 
-const WebView = {
+var WebView = {
   initParams: initParams,
   isIframe: isIframe,
   onEvent: onEvent,
@@ -250,7 +253,7 @@ const WebView = {
   callEventCallbacks: callEventCallbacks
 };
 
-const Utils = {
+var Utils = {
   urlSafeDecode: urlSafeDecode,
   urlParseQueryString: urlParseQueryString,
   urlParseHashParams: urlParseHashParams,
@@ -259,7 +262,7 @@ const Utils = {
   sessionStorageGet: sessionStorageGet
 };
 
-const Game = {
+var Game = {
   // For Windows Phone app
   Proxy_receiveEvent: receiveEvent,
   // App backward compatibility
@@ -268,4 +271,8 @@ const Game = {
   }
 };
 
-module.exports = { WebView, Utils, Game }
+module.exports = {
+  WebView: WebView,
+  Utils: Utils,
+  Game: Game
+};

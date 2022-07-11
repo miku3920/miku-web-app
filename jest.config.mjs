@@ -1,6 +1,6 @@
 export default {
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/dist/$1.js',
+    '^@/factory.mjs$': '<rootDir>/src/factory.mjs',
   },
   moduleFileExtensions: [
     'mjs',
@@ -8,5 +8,5 @@ export default {
   ],
   testEnvironment: 'jest-environment-jsdom',
   transform: {},
-  testMatch: ['<rootDir>/test/*.mjs', '<rootDir>/test/**/*.mjs'],
+  testMatch: ['<rootDir>/test/**/*.mjs'],
 }

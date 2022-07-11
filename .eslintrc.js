@@ -12,7 +12,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       alias: {
-        map: [['@/telegram', './dist/telegram.js']],
+        map: [['@/factory.mjs', './src/factory.mjs']],
       },
     },
   },
@@ -28,5 +28,5 @@ module.exports = {
       devDependencies: true,
     }],
   },
-  ignorePatterns: ['dist', 'src'],
+  ignorePatterns: ['dist', 'src', 'bin'],
 }
