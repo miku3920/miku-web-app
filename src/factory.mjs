@@ -48,4 +48,6 @@ switch (type) {
   }
 }
 
+// console.log(result, type)
+
 export default result

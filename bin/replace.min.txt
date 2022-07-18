@@ -1,1 +1,1 @@
-!function(e,t){if("function"==typeof define&&define.amd)define([],t);else if("object"==typeof exports){var i=t();exports.WebView=i.WebView,exports.Utils=i.Utils,exports.Game=i.Game,exports.WebApp=i.WebApp}else e.Telegram=t()}(self,(()=>{
+!function(e,t){"object"==typeof exports?(module.exports=t(),exports.WebView=module.exports.WebView,exports.Utils=module.exports.Utils,exports.Game=module.exports.Game,exports.WebApp=module.exports.WebApp):"function"==typeof define&&define.amd?define([],t):e.Telegram=t()}(self,(()=>{

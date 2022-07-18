@@ -1,16 +1,16 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-	if (typeof define === 'function' && define.amd) {
+	if(typeof exports === 'object')
+		module.exports = factory(),
+		exports.WebView = module.exports.WebView,
+		exports.Utils = module.exports.Utils,
+		exports.Game = module.exports.Game,
+		exports.WebApp = module.exports.WebApp;
+	else if(typeof define === 'function' && define.amd)
 		define([], factory);
-	} else if (typeof exports === 'object') {
-		var Telegram = factory();
-		exports["WebView"] = Telegram.WebView;
-		exports["Utils"] = Telegram.Utils;
-		exports["Game"] = Telegram.Game;
-		exports["WebApp"] = Telegram.WebApp;
-	} else {
+	else
 		root["Telegram"] = factory();
-	}
 })(self, () => {
+
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 

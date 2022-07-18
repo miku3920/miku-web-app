@@ -34,7 +34,7 @@ import * as Telegram from 'miku-web-app'
 import Telegram from 'miku-web-app'
 ```
 
-`miku-web-app` import should occur before import of `vue-router`, because `vue-router` in hash mode will change location.href. As a result, the WebApp will fail to initialize. If you are not using hash mode, this line can be omitted.
+`miku-web-app` import should occur before import of `vue-router`, because `vue-router` in hash mode will change location.hash. As a result, the WebApp will fail to initialize. If you are not using hash mode, this line can be omitted.
 
 ```javascript
 // main.js

@@ -20,6 +20,7 @@ module.exports = [{
   name: 'production-cjs-min',
   mode: 'production',
   entry: './src/cjs/index.js',
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'telegram.min.js',
@@ -51,6 +52,7 @@ module.exports = [{
   name: 'production-esm-min',
   mode: 'production',
   entry: './src/esm/index.mjs',
+  devtool: 'source-map',
   experiments: {
     outputModule: true,
   },
