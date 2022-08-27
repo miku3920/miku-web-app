@@ -55,7 +55,16 @@ onMounted(() => WebApp.ready())
 </script>
 ```
 
-If you actually want to use global scope, add this:
+Some functions that are not part of web elements may not be triggered on some platforms (ex. `WebApp.MainButton.onClick()`). If you use these functions, you need to add the following settings:
+
+```javascript
+// For Windows Phone app
+window.TelegramGameProxy_receiveEvent = Telegram.Game.Proxy_receiveEvent
+// App backward compatibility
+window.TelegramGameProxy = Telegram.Game.Proxy
+```
+
+If you actually want to use all object on global scope, add these:
 
 ```javascript
 window.Telegram = {
@@ -63,8 +72,7 @@ window.Telegram = {
   WebView: Telegram.WebView,
   WebApp: Telegram.WebApp
 }
-window.TelegramGameProxy_receiveEvent = Telegram.Game.Proxy_receiveEvent
-window.TelegramGameProxy = Telegram.Game.Proxy
+window.TelegramWebviewProxy = Telegram.WebView.Proxy
 ```
 
 ## FAQ
@@ -99,4 +107,4 @@ https://stackoverflow.com/questions/71909144/dont-get-a-response-from-from-teleg
 
 ## Contact
 
-Created by [@miku3920](https://t.me/miku3920) - feel free to contact me!
+Created by [@miku3920](https://t.me/miku3920) - feel free to contact me if you have any problems!

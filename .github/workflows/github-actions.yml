@@ -15,7 +15,8 @@ jobs:
         with:
           node-version: '16.x'
       - run: npm install
-      - run: npm run build
+      - run: npm run pack
+      - run: npm run fix
       - run: npm run test-cjs
       - run: npm run test-cjs-default
       - run: npm run test-cjs-min

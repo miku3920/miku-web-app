@@ -9,6 +9,7 @@ var WebApp = {};
 var webAppInitData = '', webAppInitDataUnsafe = {};
 var themeParams = {}, colorScheme = 'light';
 var webAppVersion = '6.0';
+var webAppPlatform = 'unknown';
 
 if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
   webAppInitData = initParams.tgWebAppData;
@@ -38,6 +39,9 @@ if (theme_params) {
 }
 if (initParams.tgWebAppVersion) {
   webAppVersion = initParams.tgWebAppVersion;
+}
+if (initParams.tgWebAppPlatform) {
+  webAppPlatform = initParams.tgWebAppPlatform;
 }
 
 function onThemeChanged(eventType, eventData) {
@@ -156,14 +160,14 @@ function setViewportHeight(data) {
   setCssProperty('viewport-stable-height', stable_height);
 }
 
-var closingConfirmation = false;
+var isClosingConfirmationEnabled = false;
 function setClosingConfirmation(need_confirmation) {
   if (!versionAtLeast('6.2')) {
-    console.warn('[Telegram.WebApp] closingConfirmation is not supported in version ' + webAppVersion);
+    console.warn('[Telegram.WebApp] Closing confirmation is not supported in version ' + webAppVersion);
     return;
   }
-  closingConfirmation = !!need_confirmation;
-  WebView.postEvent('web_app_setup_closing_behavior', false, {need_confirmation: closingConfirmation});
+  isClosingConfirmationEnabled = !!need_confirmation;
+  WebView.postEvent('web_app_setup_closing_behavior', false, {need_confirmation: isClosingConfirmationEnabled});
 }
 
 var headerColorKey = 'bg_color';
@@ -184,7 +188,7 @@ function setHeaderColor(color) {
         themeParams.bg_color == color_key) {
       color_key = 'bg_color';
     } else if (themeParams.secondary_bg_color &&
-                themeParams.secondary_bg_color == color_key) {
+               themeParams.secondary_bg_color == color_key) {
       color_key = 'secondary_bg_color';
     } else {
       color_key = false;
@@ -707,6 +711,10 @@ Object.defineProperty(WebApp, 'version', {
   get: function(){ return webAppVersion; },
   enumerable: true
 });
+Object.defineProperty(WebApp, 'platform', {
+  get: function(){ return webAppPlatform; },
+  enumerable: true
+});
 Object.defineProperty(WebApp, 'colorScheme', {
   get: function(){ return colorScheme; },
   enumerable: true
@@ -727,9 +735,9 @@ Object.defineProperty(WebApp, 'viewportStableHeight', {
   get: function(){ return (viewportStableHeight === false ? window.innerHeight : viewportStableHeight) - mainButtonHeight; },
   enumerable: true
 });
-Object.defineProperty(WebApp, 'closingConfirmation', {
+Object.defineProperty(WebApp, 'isClosingConfirmationEnabled', {
   set: function(val){ setClosingConfirmation(val); },
-  get: function(){ return closingConfirmation; },
+  get: function(){ return isClosingConfirmationEnabled; },
   enumerable: true
 });
 Object.defineProperty(WebApp, 'headerColor', {
@@ -761,10 +769,10 @@ WebApp.setBackgroundColor = function(color) {
   WebApp.backgroundColor = color;
 };
 WebApp.enableClosingConfirmation = function() {
-  WebApp.closingConfirmation = true;
+  WebApp.isClosingConfirmationEnabled = true;
 };
 WebApp.disableClosingConfirmation = function() {
-  WebApp.closingConfirmation = false;
+  WebApp.isClosingConfirmationEnabled = false;
 };
 WebApp.isVersionAtLeast = function(ver) {
   return versionAtLeast(ver);
@@ -907,7 +915,7 @@ WebApp.showPopup = function (params, callback) {
           button_type == 'cancel') {
         // no params needed
       } else if (button_type == 'default' ||
-                  button_type == 'destructive') {
+                 button_type == 'destructive') {
         var text = '';
         if (typeof button.text !== 'undefined') {
           text = strTrim(button.text);

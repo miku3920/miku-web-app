@@ -11,10 +11,11 @@ declare namespace Telegram {
   interface WebAppUser {
     id: number,
     is_bot?: boolean,
-    first_name?: string,
+    first_name: string,
     last_name?: string,
     username?: string,
     language_code?: string,
+    is_premium?: true,
     photo_url?: string,
   }
 
@@ -70,6 +71,18 @@ declare namespace Telegram {
     hide: () => void,
   }
 
+  interface PopupButton {
+    id?: string,
+    type?: string,
+    text?: string,
+  }
+
+  interface PopupParams {
+    title?: string,
+    message: string,
+    buttons?: PopupButton[],
+  }
+
   interface ThemeParams {
     bg_color?: string,
     text_color?: string,
@@ -88,6 +101,7 @@ declare namespace Telegram {
     postEvent: (eventType: string, callback?: (() => void) | false, eventData?: object) => void,
     receiveEvent: (eventType: string, eventData: object) => void,
     callEventCallbacks: (eventType: string, func: object) => void,
+    Proxy: { postEvent: (eventType: string, eventData: string) => void },
   }
 
   interface Utils {
@@ -117,20 +131,28 @@ declare namespace Telegram {
     viewportStableHeight: number,
     headerColor: string,
     backgroundColor: string,
+    isClosingConfirmationEnabled: boolean,
     BackButton: BackButton,
     MainButton: MainButton,
     HapticFeedback: HapticFeedback,
     isVersionAtLeast: (version: string) => boolean,
     setHeaderColor: (color: 'bg_color' | 'secondary_bg_color') => void,
     setBackgroundColor: (color: 'bg_color' | 'secondary_bg_color') => void,
+    enableClosingConfirmation: () => void,
+    disableClosingConfirmation: () => void,
     onEvent(eventType: 'themeChanged' | 'mainButtonClicked' | 'backButtonClicked' | 'settingsButtonClicked', eventHandler: () => void): void;
     onEvent(eventType: 'viewPortChanged', eventHandler: (eventData: { isStateStable: boolean }) => void): void;
+    onEvent(eventType: 'invoiceClosed', eventHandler: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void): void;
     offEvent(eventType: 'themeChanged' | 'mainButtonClicked' | 'backButtonClicked' | 'settingsButtonClicked', eventHandler: () => void): void;
     offEvent(eventType: 'viewPortChanged', eventHandler: (eventData: { isStateStable: boolean }) => void): void;
+    offEvent(eventType: 'invoiceClosed', eventHandler: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void): void;
     sendData: (data: string) => void,
     openLink: (url: string) => void,
     openTelegramLink: (url: string) => void,
-    openInvoice: (url: string, callback: () => void) => void,
+    openInvoice: (url: string, callback: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void) => void,
+    showPopup: (params: PopupParams, callback?: (buttonId: string) => void) => void,
+    showAlert: (message: string, callback?: () => void) => void,
+    showConfirm: (message: string, callback?: (isButtonIdOk: boolean) => void) => void,
     ready: () => void,
     expand: () => void,
     close: () => void,

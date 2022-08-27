@@ -1,8 +1,15 @@
 var eventHandlers = {};
 
+var Proxy;
+try {
+  Proxy = window.TelegramWebviewProxy;
+  delete window.TelegramWebviewProxy;
+} catch (e) {}
+
 var locationHash = '';
 try {
   locationHash = location.hash.toString();
+  location.hash = '';
 } catch (e) {}
 
 var initParams = urlParseHashParams(locationHash);
@@ -127,8 +134,8 @@ function postEvent(eventType, callback, eventData) {
     eventData = '';
   }
 
-  if (window.TelegramWebviewProxy !== undefined) {
-    window.TelegramWebviewProxy.postEvent(eventType, JSON.stringify(eventData));
+  if (Proxy !== undefined) {
+    Proxy.postEvent(eventType, JSON.stringify(eventData));
     callback();
   }
   else if (window.external && 'notify' in window.external) {
@@ -250,7 +257,8 @@ var WebView = {
   offEvent: offEvent,
   postEvent: postEvent,
   receiveEvent: receiveEvent,
-  callEventCallbacks: callEventCallbacks
+  callEventCallbacks: callEventCallbacks,
+  Proxy: Proxy
 };
 
 var Utils = {
