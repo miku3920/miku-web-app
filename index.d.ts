@@ -143,9 +143,11 @@ declare namespace Telegram {
     onEvent(eventType: 'themeChanged' | 'mainButtonClicked' | 'backButtonClicked' | 'settingsButtonClicked', eventHandler: () => void): void;
     onEvent(eventType: 'viewPortChanged', eventHandler: (eventData: { isStateStable: boolean }) => void): void;
     onEvent(eventType: 'invoiceClosed', eventHandler: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void): void;
+    onEvent(eventType: 'popupClosed', eventHandler: (eventData: { button_id?: string }) => void): void;
     offEvent(eventType: 'themeChanged' | 'mainButtonClicked' | 'backButtonClicked' | 'settingsButtonClicked', eventHandler: () => void): void;
     offEvent(eventType: 'viewPortChanged', eventHandler: (eventData: { isStateStable: boolean }) => void): void;
     offEvent(eventType: 'invoiceClosed', eventHandler: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void): void;
+    offEvent(eventType: 'popupClosed', eventHandler: (eventData: { button_id?: string }) => void): void;
     sendData: (data: string) => void,
     openLink: (url: string) => void,
     openTelegramLink: (url: string) => void,

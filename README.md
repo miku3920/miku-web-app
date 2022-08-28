@@ -1,6 +1,7 @@
 [![build](https://img.shields.io/github/workflow/status/miku3920/miku-web-app/Github%20Actions)](https://github.com/miku3920/miku-web-app) [![npm](https://img.shields.io/npm/v/miku-web-app)](https://www.npmjs.com/package/miku-web-app) [![cdnjs](https://img.shields.io/cdnjs/v/miku-web-app)](https://cdnjs.com/libraries/miku-web-app) [![minified size](https://img.shields.io/bundlephobia/min/miku-web-app)](https://cdnjs.com/libraries/miku-web-app) [![license](https://img.shields.io/github/license/miku3920/miku-web-app)](https://github.com/miku3920/miku-web-app/blob/main/LICENSE)
 
 # miku-web-app
+
 A npm module for Telegram Web App to prevent the pollution of the global scope.
 
 ## Table of Contents
@@ -55,7 +56,7 @@ onMounted(() => WebApp.ready())
 </script>
 ```
 
-Some functions that are not part of web elements may not be triggered on some platforms (ex. `WebApp.MainButton.onClick()`). If you use these functions, you need to add the following settings:
+Some functions (ex. `WebApp.MainButton.onClick()`) that are not part of web elements may not be triggered on some platforms. If you use these functions, you need to add the following settings:
 
 ```javascript
 // For Windows Phone app
