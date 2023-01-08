@@ -71,6 +71,10 @@ declare namespace Telegram {
     hide: () => void,
   }
 
+  interface ScanQrPopupParams {
+    text?: string,
+  }
+
   interface PopupButton {
     id?: string,
     type?: string,
@@ -124,6 +128,7 @@ declare namespace Telegram {
     initData: string,
     initDataUnsafe: WebAppInitData,
     version: string,
+    platform: string,
     colorScheme: 'light' | 'dark',
     themeParams: ThemeParams,
     isExpanded: boolean,
@@ -144,17 +149,24 @@ declare namespace Telegram {
     onEvent(eventType: 'viewPortChanged', eventHandler: (eventData: { isStateStable: boolean }) => void): void;
     onEvent(eventType: 'invoiceClosed', eventHandler: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void): void;
     onEvent(eventType: 'popupClosed', eventHandler: (eventData: { button_id?: string }) => void): void;
+    onEvent(eventType: 'qrTextReceived', eventHandler: (eventData: { data?: string }) => void): void;
+    onEvent(eventType: 'clipboardTextReceived ', eventHandler: (eventData: { data?: string }) => void): void;
     offEvent(eventType: 'themeChanged' | 'mainButtonClicked' | 'backButtonClicked' | 'settingsButtonClicked', eventHandler: () => void): void;
     offEvent(eventType: 'viewPortChanged', eventHandler: (eventData: { isStateStable: boolean }) => void): void;
     offEvent(eventType: 'invoiceClosed', eventHandler: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void): void;
     offEvent(eventType: 'popupClosed', eventHandler: (eventData: { button_id?: string }) => void): void;
+    offEvent(eventType: 'qrTextReceived', eventHandler: (eventData: { data?: string }) => void): void;
+    offEvent(eventType: 'clipboardTextReceived ', eventHandler: (eventData: { data?: string }) => void): void;
     sendData: (data: string) => void,
-    openLink: (url: string) => void,
+    openLink: (url: string, options?: {try_instant_view: boolean}) => void,
     openTelegramLink: (url: string) => void,
     openInvoice: (url: string, callback: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void) => void,
     showPopup: (params: PopupParams, callback?: (buttonId: string) => void) => void,
     showAlert: (message: string, callback?: () => void) => void,
     showConfirm: (message: string, callback?: (isButtonIdOk: boolean) => void) => void,
+    showScanQrPopup: (params: ScanQrPopupParams, callback?: (text?: string) => boolean) => void,
+    closeScanQrPopup: () => void,
+    readTextFromClipboard: (callback?: (text?: string) => void) => void,
     ready: () => void,
     expand: () => void,
     close: () => void,
