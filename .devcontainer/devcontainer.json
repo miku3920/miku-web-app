@@ -1,0 +1,26 @@
+{
+  "name": "Node.js",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Orta.vscode-jest",
+        "dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "editor.renderWhitespace": "all",
+        "editor.unicodeHighlight.allowedLocales": {
+          "zh-hant": true
+        },
+        "jest.nodeEnv": {
+          "NODE_OPTIONS": "--experimental-vm-modules"
+        }
+      }
+    }
+  }
+}

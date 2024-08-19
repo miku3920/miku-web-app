@@ -24,11 +24,11 @@ var __webpack_exports__ = {};
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "lA": () => (/* binding */ esm_Game),
-  "cQ": () => (/* binding */ esm_Utils),
-  "Zt": () => (/* binding */ esm_WebApp),
-  "kh": () => (/* binding */ esm_WebView),
-  "ZP": () => (/* binding */ esm)
+  Zt: () => (/* binding */ esm_Game),
+  Aq: () => (/* binding */ esm_Utils),
+  W4: () => (/* binding */ esm_WebApp),
+  SC: () => (/* binding */ esm_WebView),
+  Ay: () => (/* binding */ esm)
 });
 
 ;// CONCATENATED MODULE: ./src/esm/telegram/webview.mjs
@@ -1164,6 +1164,41 @@ WebApp.sendData = function (data) {
   }
   webapp_WebView.postEvent('web_app_data_send', false, {data: data});
 };
+WebApp.switchInlineQuery = function (query, choose_chat_types) {
+  if (!versionAtLeast('6.6')) {
+    console.error('[Telegram.WebApp] Method switchInlineQuery is not supported in version ' + webAppVersion);
+    throw Error('WebAppMethodUnsupported');
+  }
+  if (!webapp_initParams.tgWebAppBotInline) {
+    console.error('[Telegram.WebApp] Inline mode is disabled for this bot. Read more about inline mode: https://core.telegram.org/bots/inline');
+    throw Error('WebAppInlineModeDisabled');
+  }
+  query = query || '';
+  if (query.length > 256) {
+    console.error('[Telegram.WebApp] Inline query is too long', query);
+    throw Error('WebAppInlineQueryInvalid');
+  }
+  var chat_types = [];
+  if (choose_chat_types) {
+    if (!Array.isArray(choose_chat_types)) {
+      console.error('[Telegram.WebApp] Choose chat types should be an array', choose_chat_types);
+      throw Error('WebAppInlineChooseChatTypesInvalid');
+    }
+    var good_types = {users: 1, bots: 1, groups: 1, channels: 1};
+    for (var i = 0; i < choose_chat_types.length; i++) {
+      var chat_type = choose_chat_types[i];
+      if (!good_types[chat_type]) {
+        console.error('[Telegram.WebApp] Choose chat type is invalid', chat_type);
+        throw Error('WebAppInlineChooseChatTypeInvalid');
+      }
+      if (good_types[chat_type] != 2) {
+        good_types[chat_type] = 2;
+        chat_types.push(chat_type);
+      }
+    }
+  }
+  webapp_WebView.postEvent('web_app_switch_inline_query', false, {query: query, chat_types: chat_types});
+};
 WebApp.openLink = function (url, options) {
   var a = document.createElement('A');
   a.href = url;
@@ -1439,9 +1474,9 @@ var Telegram = {
 
 /* harmony default export */ const esm = (Telegram);
 
-var __webpack_exports__Game = __webpack_exports__.lA;
-var __webpack_exports__Utils = __webpack_exports__.cQ;
-var __webpack_exports__WebApp = __webpack_exports__.Zt;
-var __webpack_exports__WebView = __webpack_exports__.kh;
-var __webpack_exports__default = __webpack_exports__.ZP;
+var __webpack_exports__Game = __webpack_exports__.Zt;
+var __webpack_exports__Utils = __webpack_exports__.Aq;
+var __webpack_exports__WebApp = __webpack_exports__.W4;
+var __webpack_exports__WebView = __webpack_exports__.SC;
+var __webpack_exports__default = __webpack_exports__.Ay;
 export { __webpack_exports__Game as Game, __webpack_exports__Utils as Utils, __webpack_exports__WebApp as WebApp, __webpack_exports__WebView as WebView, __webpack_exports__default as default };

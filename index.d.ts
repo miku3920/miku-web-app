@@ -158,7 +158,8 @@ declare namespace Telegram {
     offEvent(eventType: 'qrTextReceived', eventHandler: (eventData: { data?: string }) => void): void;
     offEvent(eventType: 'clipboardTextReceived ', eventHandler: (eventData: { data?: string }) => void): void;
     sendData: (data: string) => void,
-    openLink: (url: string, options?: {try_instant_view: boolean}) => void,
+    switchInlineQuery: (query?: string, choose_chat_types?: Array<'users' | 'bots' | 'groups' | 'channels'>) => void,
+    openLink: (url: string, options?: { try_instant_view: boolean }) => void,
     openTelegramLink: (url: string) => void,
     openInvoice: (url: string, callback: (eventData: { url: string, status: 'paid' | 'cancelled' | 'failed ' | 'pending' }) => void) => void,
     showPopup: (params: PopupParams, callback?: (buttonId: string) => void) => void,

@@ -43,7 +43,7 @@ switch (type) {
     result = TelegramESMMinDefault
     break
   }
-  default:{
+  default: {
     break
   }
 }

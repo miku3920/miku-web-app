@@ -20,9 +20,33 @@ This website features several demos of the WebApp, as well as update records and
 
 ## Setup
 
+### Using npm
+
 ```bash
 $ npm i miku-web-app
 ```
+
+### Using CDN
+
+If you prefer not to install the npm module, you can also use a CDN. Depending on your project's requirements, you can choose either the CJS (CommonJS) or MJS (ES Module) format:
+
+#### CJS (CommonJS) Format
+
+```html
+<script src="https://unpkg.com/miku-web-app@latest/dist/telegram.min.js"></script>
+```
+
+When using the CJS format, `miku-web-app` will be automatically added to the global scope.
+
+#### MJS (ES Module) Format
+
+```html
+<script type="module">
+  import Telegram from 'https://unpkg.com/miku-web-app@latest/dist/telegram.min.mjs';
+</script>
+```
+
+This method is suitable for projects using ES modules, allowing you to import the module directly in a `<script type="module">` block without relying on `window`.
 
 ## Usage
 

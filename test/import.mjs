@@ -1,6 +1,5 @@
 import Telegram from '@/factory.mjs'
 
-// eslint-disable-next-line no-console
 console.log(process.env.TYPE || 'no type')
 const check = ((process.env.TYPE || '').indexOf('Default') === -1) ? 'toBeDefined' : 'toBeUndefined'
 
